@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+     <transition name="bounce">
+			<router-view></router-view>
+		</transition>
   </div>
 </template>
 
@@ -12,12 +13,17 @@ export default {
 </script>
 
 <style>
+.bounce-enter-active {
+		animation: bounce-in 0s;
+	}
+.bounce-leave-active {
+  animation: bounce-out 0s;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
+  height: 100%;
 }
 </style>

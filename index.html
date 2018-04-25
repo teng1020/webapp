@@ -3,10 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>ylwebapp</title>
+    <title></title>
+    <link rel="shortcut icon" href="static/favicon.ico" />
     <link rel="manifest" href="static/manifest.json">
+    <script src="static/js/config.js" type="text/javascript"></script> 
+    <script type="text/javascript">
+     //初始化方法
+     document.title = webappConfig().sysConf.titleName;
+    </script>
   </head>
-  <body>
+  <body >
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

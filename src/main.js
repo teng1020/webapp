@@ -1,68 +1,53 @@
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+import router from './router'
+//插件
 import 'amfe-flexible'
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-// By default we import all the components.
-// Only reserve the components on demand and remove the rest.
-// Style is always required.
-import {
-  Style,
-  Button,
-  CheckboxGroup,
-  Radio,
-  Input,
-  Textarea,
-  Select,
-  Switch,
-  Rate,
-  Validator,
-  Loading,
-  Tip,
-  Popup,
-  Toast,
-  Picker,
-  CascadePicker,
-  TimePicker,
-  Dialog,
-  ActionSheet,
-  Scroll,
-  Slide,
-  IndexList,
-  Swipe,
-  Upload
-} from 'cube-ui'
-import App from './App'
-import router from './router'
+import NProgress from 'nprogress'
+import '../static/css/nprogress.css'
 
-Vue.use(Button)
-Vue.use(CheckboxGroup)
-Vue.use(Radio)
-Vue.use(Input)
-Vue.use(Textarea)
-Vue.use(Select)
-Vue.use(Switch)
-Vue.use(Rate)
-Vue.use(Validator)
-Vue.use(Loading)
-Vue.use(Tip)
-Vue.use(Toast)
-Vue.use(Picker)
-Vue.use(CascadePicker)
-Vue.use(TimePicker)
-Vue.use(Dialog)
-Vue.use(ActionSheet)
-Vue.use(Scroll)
-Vue.use(Slide)
-Vue.use(IndexList)
-Vue.use(Swipe)
-Vue.use(Upload)
+
+
+import store from './vuex/store'
+import './common/styl/index.styl'  //全局样式
+
+//引入图标样式
+import 'font-awesome/css/font-awesome.min.css'
+
+
+import App from './App'
+import components from './components'
+import globalFun from './common/js/globalFun'
+
+
+import util from '@/common/js/util'
+
+
+
+
+
+
+NProgress.configure({ showSpinner: false });
+
+router.beforeEach((to, from, next) => {
+  NProgress.start();
+  if(util.isAuth(to.path)){
+    next();
+  }
+})
+
+router.afterEach(transition => {
+   NProgress.done();
+});
 
 Vue.config.productionTip = false
-
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
